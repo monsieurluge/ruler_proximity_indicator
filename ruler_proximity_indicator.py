@@ -25,7 +25,7 @@ class RulerProximityIndicator(sublime_plugin.EventListener):
         if not settings.get('rulers') is None:
             self.rulers = settings.get('rulers')
 
-    def on_selection_modified(self, view):
+    def on_selection_modified_async(self, view):
         current_line_point  = view.sel()[0].begin()
         line_length         = view.line(current_line_point).size()
         proximity_to_rulers = map(lambda r: (line_length - r), self.rulers)
